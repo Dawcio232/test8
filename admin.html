@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Admin — Starfish Community</title>
+	<link rel="stylesheet" href="styles.css" />
+</head>
+<body class="dark">
+  <div class="ambient-bg" aria-hidden="true"></div>
+	<header class="site-header">
+		<div class="container">
+			<div class="brand">Starfish Admin</div>
+			<nav>
+				<a href="index.html">Public Hub</a>
+			</nav>
+		</div>
+	</header>
+
+	<main class="container">
+		<section class="panel" id="loginPanel">
+			<h2>Admin Login</h2>
+			<input id="adminPass" placeholder="Enter admin passphrase" type="password" />
+			<button id="doLogin" class="primary">Login</button>
+			<div id="loginMsg" class="meta" style="margin-top:8px;color:var(--muted)"></div>
+		</section>
+
+		<section class="panel hidden" id="dashboard">
+			<h2>Moderation Dashboard</h2>
+
+      <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
+        <label style="display:flex;gap:8px;align-items:center;color:var(--muted)">
+          <input type="checkbox" id="glitchToggle" /> Glitch Mode
+        </label>
+        <button id="panicBtn" class="primary" style="background:#ff3b6b;border-radius:8px">Panic (clear data)</button>
+      </div>
+
+			<div style="display:flex;gap:12px;flex-wrap:wrap">
+				<div style="flex:1;min-width:320px">
+					<h3>Pending Posts</h3>
+					<div id="pendingList"></div>
+				</div>
+
+				<div style="flex:1;min-width:320px">
+					<h3>Links Management</h3>
+					<form id="addLinkForm" style="margin-bottom:12px">
+						<input name="title" placeholder="Title" required />
+						<input name="url" placeholder="https://..." required />
+						<button class="primary" type="submit">Add link (pending)</button>
+					</form>
+					<div id="linksManage"></div>
+				</div>
+
+				<div style="flex:1;min-width:320px">
+					<h3>Contact Messages</h3>
+					<div id="contactsList"></div>
+				</div>
+
+        <div style="flex:1;min-width:320px">
+          <h3>Archive — Books</h3>
+          <form id="addBookForm" style="margin-bottom:12px">
+            <input name="title" placeholder="Book title" required />
+            <input name="author" placeholder="Author" />
+            <textarea name="desc" placeholder="Short description"></textarea>
+            <button class="primary" type="submit">Add book (pending)</button>
+          </form>
+          <div id="booksManage"></div>
+        </div>
+
+			</div>
+		</section>
+	</main>
+
+	<script src="admin.js"></script>
+</body>
+</html>

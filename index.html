@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Starfish Community — Hub</title>
+	<link rel="stylesheet" href="styles.css" />
+</head>
+<body class="dark">
+  <div class="ambient-bg" aria-hidden="true"></div>
+	<header class="site-header">
+		<div class="container">
+			<div class="brand">Test8</div>
+			<nav>
+				<a href="index.html">Hub</a>
+				<a href="forum.html">Forum</a>
+				<a href="links.html">Links</a>
+				<a href="contact.html">Contact</a>
+				<a href="admin.html" class="admin-link">Admin</a>
+			</nav>
+		</div>
+	</header>
+
+	<main class="container">
+		<section class="hero">
+			<h1>Starfish Community Hub</h1>
+			<p>Your central place: forum, curated resources, contact, and admin control panel.</p>
+			<div style="display:flex;gap:10px;flex-wrap:wrap">
+				<a class="primary" href="forum.html">Go to Forum</a>
+				<a class="primary ghost" href="links.html">Resources</a>
+				<a class="primary ghost" href="contact.html">Contact</a>
+			</div>
+		</section>
+
+		<section class="panel stats">
+			<h2>Community at a glance</h2>
+			<div class="cards">
+				<div class="stat card"><div class="num" id="statPosts">—</div><div class="label">Approved Posts</div></div>
+				<div class="stat card"><div class="num" id="statLinks">—</div><div class="label">Approved Links</div></div>
+				<div class="stat card"><div class="num" id="statMessages">—</div><div class="label">Unread Messages</div></div>
+			</div>
+		</section>
+
+		<section class="panel">
+			<h2>Recent Activity</h2>
+			<div id="recent" class="feed">
+				<!-- recent approved posts rendered here -->
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container">© Starfish Community — Manage via Admin panel</div>
+	</footer>
+
+	<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>Forum — Starfish Community</title>
+	<link rel="stylesheet" href="styles.css" />
+</head>
+<body class="dark">
+  <div class="ambient-bg" aria-hidden="true"></div>
+	<header class="site-header">
+		<div class="container">
+			<div class="brand">Starfish Community</div>
+			<nav>
+				<a href="index.html">Hub</a>
+				<a href="forum.html">Forum</a>
+				<a href="links.html">Links</a>
+				<a href="contact.html">Contact</a>
+				<a href="admin.html" class="admin-link">Admin</a>
+			</nav>
+		</div>
+	</header>
+
+	<main class="container">
+		<section class="panel">
+			<h2>Forum</h2>
+			<div id="feed" class="feed"></div>
+		</section>
+
+		<section class="panel">
+			<h3>Create a new post</h3>
+			<form id="newPostForm">
+				<input name="author" placeholder="Your name (optional)" />
+				<textarea name="content" placeholder="Share your thought..."></textarea>
+				<button class="primary" type="submit">Submit (pending approval)</button>
+			</form>
+		</section>
+	</main>
+
+	<script src="main.js"></script>
+</body>
+</html>

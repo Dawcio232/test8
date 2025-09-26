@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Moderator Hub — Test8</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="dark">
+  <div class="ambient-bg" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">Moderator Hub</div>
+      <nav>
+        <a href="index.html">Hub</a>
+        <a href="forum.html">Forum</a>
+        <a href="links.html">Links</a>
+        <a href="archive.html">Archive</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <h2>Signed in as: Moderator</h2>
+      <p class="meta">You can create posts, links and books. Items you create are saved as pending and require administrator approval.</p>
+    </section>
+
+    <section class="panel">
+      <h3>Create Post (pending)</h3>
+      <form id="modPostForm">
+        <input name="author" placeholder="Your name (optional)" />
+        <textarea name="content" placeholder="Post content" required></textarea>
+        <button class="primary" type="submit">Create Post (pending)</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h3>Suggest Link (pending)</h3>
+      <form id="modLinkForm">
+        <input name="title" placeholder="Title" required />
+        <input name="url" placeholder="https://..." required />
+        <button class="primary" type="submit">Add Link (pending)</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h3>Add Book to Archive (pending)</h3>
+      <form id="modBookForm">
+        <input name="title" placeholder="Book title" required />
+        <input name="author" placeholder="Author" />
+        <textarea name="desc" placeholder="Short description"></textarea>
+        <button class="primary" type="submit">Add Book (pending)</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Moderator actions are pending admin approval</div>
+  </footer>
+
+  <script>
+    // minimal moderator client behavior - saves to the same localStorage keys
+    (function(){
+      const POSTS_KEY = 'sf_posts_v1';
+      const LINKS_KEY = 'sf_links_v1';
+      const BOOKS_KEY = 'sf_books_v1';
+      function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,6) }
+      function get(k){ try{ return JSON.parse(localStorage.getItem(k)||'[]') }catch(e){ return [] } }
+      function save(k,v){ localStorage.setItem(k, JSON.stringify(v)) }
+
+      const postForm = document.getElementById('modPostForm');
+      if(postForm){
+        postForm.addEventListener('submit', e=>{
+          e.preventDefault();
+          const author = (postForm.querySelector('[name=author]').value||'Moderator').trim();
+          const content = (postForm.querySelector('[name=content]').value||'').trim();
+          if(!content){ alert('Enter content'); return; }
+          const list = get(POSTS_KEY);
+          list.push({ id: uid(), author, content, created: Date.now(), approved: false, createdByRole: 'moderator' });
+          save(POSTS_KEY, list);
+          postForm.reset();
+          alert('Post created and pending admin approval.');
+        });
+      }
+
+      const linkForm = document.getElementById('modLinkForm');
+      if(linkForm){
+        linkForm.addEventListener('submit', e=>{
+          e.preventDefault();
+          const title = linkForm.querySelector('[name=title]').value.trim();
+          const url = linkForm.querySelector('[name=url]').value.trim();
+          if(!title||!url){ alert('Provide title and url'); return; }
+          const list = get(LINKS_KEY);
+          list.push({ id: uid(), title, url, created: Date.now(), approved: false, createdByRole: 'moderator' });
+          save(LINKS_KEY, list);
+          linkForm.reset();
+          alert('Link suggested and pending admin approval.');
+        });
+      }
+
+      const bookForm = document.getElementById('modBookForm');
+      if(bookForm){
+        bookForm.addEventListener('submit', e=>{
+          e.preventDefault();
+          const title = bookForm.querySelector('[name=title]').value.trim();
+          const author = bookForm.querySelector('[name=author]').value.trim();
+          const desc = bookForm.querySelector('[name=desc]').value.trim();
+          if(!title){ alert('Provide a title'); return; }
+          const list = get(BOOKS_KEY);
+          list.push({ id: uid(), title, author, desc, created: Date.now(), approved: false, createdByRole: 'moderator' });
+          save(BOOKS_KEY, list);
+          bookForm.reset();
+          alert('Book submitted and pending admin approval.');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
