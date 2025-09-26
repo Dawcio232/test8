@@ -255,6 +255,9 @@
       msgs.forEach(m=>{
         const el = document.createElement('div'); el.className='card';
         el.innerHTML = `<div class="meta">${esc(m.name)} • ${new Date(m.created).toLocaleString()}</div>
+          <div style="margin-bottom:6px">
+            <strong>Email:</strong> ${m.email ? `<a href="mailto:${esc(m.email)}">${esc(m.email)}</a>` : '<em>none</em>'}
+          </div>
           <div style="margin:8px 0">${esc(m.message)}</div>
           <div style="display:flex;gap:8px">
             <button data-id="${m.id}" class="mark">${m.read? 'Mark Unread':'Mark Read'}</button>
